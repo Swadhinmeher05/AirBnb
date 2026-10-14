@@ -69,7 +69,6 @@ app.get("/",(req,res)=>{
    res.redirect("/listings");
 });
 
-app.use("/listings", listingsRouter);
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -104,6 +103,7 @@ app.use((err,req,res,next)=>{
     res.status(status).send(message);
 })
 
-app.listen(8080,()=>{
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
     console.log("app is listening... ");
-})
+});
