@@ -1,0 +1,78 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="filters">
+        <a href="/listings?category=trending" class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p>
+        </a>
+        
+        <a href="/listings?category=room" class="filter">
+            <div><i class="fa-solid fa-bed"></i></i></div>
+            <p>Room</p>
+        </a>
+        
+        <a href="/listings?category=mountain" class="filter">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountain</p>
+        </a>
+        <a href="/listings?category=iconic_city"  class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Iconic City</p>
+        </a>
+        <a href="/listings?category=pool"  class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Pool</p>
+        </a>
+        <a href="/listings?category=camping" class="filter">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Camping</p>
+        </a>
+        <a href="/listings?category=farm"  class="filter">
+            <div><i class="fa-solid fa-building-wheat"></i></div>
+            <p>Farm</p>
+        </a>
+        <a href="/listings?category=arctic"  class="filter">
+            <div><i class="fa-solid fa-snowflake"></i></div>
+            <p>Arctic</p>
+        </a>
+
+        <div class="tax-toggle">
+            <div class="form-check form-switch form-check-reverse ">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                <label class="form-check-label" for="switchCheckChecked">Display total After Taxes</label>
+            </div>
+        </div>
+    </div>
+   <div class="row listing-row">
+    <% if (allListing.length === 0) { %>
+        <div class="text-center mt-5">
+            <h4>No listings found<%= category ? " in " + category.replace("_", " ") : "" %>.</h4>
+            <a href="/listings" class="btn btn-dark mt-3">View all listings</a>
+        </div>
+    <% } else { %>
+    <% for(let list of allListing) { %>
+         <div class="col-md-4 col-lg-3 mb-4">
+            <a href="/listings/<%= list._id %>" class="listing-link" >
+            <div class="card listing-card">
+                <img src="<%= list.image.url %>" class="card-img-top" alt="listing_img">
+                <div class="card-body">
+                    <h5 class="card-title"><%= list.title %></h5>
+                    <p class="card-location">
+                        <%= list.location %>, <%= list.country %>
+                    </p>
+                    <p class="card-price">
+                        ₹<%= list.price != null ? list.price.toLocaleString("en-IN") : "N/A" %>
+                        <span>/ night</span>
+                        <i class="tax-info">&nbsp;+18% GST</i>
+                    </p>
+                </div>
+            </div>
+            </a>
+         </div>
+     <% } %>    
+    <% } %>
+</div>   
+</body>
+
+

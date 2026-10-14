@@ -1,0 +1,75 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-md-8 col-lg-5">
+        <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+
+                <h2 class="text-center fw-bold mb-1">Create an account</h2>
+                <p class="text-center text-muted mb-4">Join Wanderlust today</p>
+
+                <form action="/signup" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            placeholder="Enter username"
+                            class="form-control form-control-lg"
+                            required
+                        />
+                        <div class="valid-feedback">
+                            Correct! 👍
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid username
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Enter email"
+                            class="form-control form-control-lg"
+                            required
+                        />
+                        <div class="valid-feedback">
+                            Correct! 👍
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid email
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Enter password"
+                            class="form-control form-control-lg"
+                            required
+                        />
+                        <div class="valid-feedback">
+                            Correct! 👍
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid password
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-lg w-100">Sign Up</button>
+                </form>
+
+                <p class="text-center mt-4 mb-0">
+                    Already have an account? <a href="/login" class="text-success fw-semibold">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
