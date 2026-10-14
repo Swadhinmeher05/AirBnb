@@ -4,15 +4,22 @@ const mapToken=process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken:mapToken});
 
 module.exports.index=async(req,res)=>{
-    const {category}=req.query;
-    const filter=category ? {category}:{};
-    const allListing=await Listing.find(filter);
+    const {category,q}=req.query;
+    const filter={};
+    if(category){
+        filter.category=category;
+    } 
+
+    if(q){
+        filter.title={$regex:q,$options:"i"};
+    }
     
+     const allListing=await Listing.find(filter);
     if (category && allListing.length === 0) {
         req.flash("error", `No listings found in ${category.replace("_", " ")}`);
     }
 
-    res.render("listings/index.ejs",{ allListing,category });
+    res.render("listings/index.ejs", { allListing, category, q: q || "" });
 };   
 
 module.exports.renderNewFrom=(req,res)=>{
